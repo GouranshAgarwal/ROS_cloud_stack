@@ -1,0 +1,23 @@
+# ROS Build and Install Directories
+build/
+devel/
+install/
+log/
+
+# ROS Bag Files (Large binary data)
+*.bag
+
+# IDE and Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Specific Files
+.DS_Store
+Thumbs.db
+
+# Local Configuration (if not intended for sharing)
+# ~/.ros/
+# *.log

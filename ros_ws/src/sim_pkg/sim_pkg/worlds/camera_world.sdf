@@ -1,0 +1,88 @@
+<sdf version="1.7">
+  <world name="default">
+
+    <!-- Physics -->
+    <plugin filename="libignition-gazebo6-physics-system.so"
+            name="ignition::gazebo::systems::Physics"/>
+
+    <!-- Sensors -->
+    <plugin filename="libignition-gazebo6-sensors-system.so"
+            name="ignition::gazebo::systems::Sensors"/>
+
+    <!-- Light (important) -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+
+    <!-- Ground plane so the camera has a visible scene -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="target_box">
+      <static>true</static>
+      <pose>2 0 0.25 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.8 1</ambient>
+            <diffuse>0.2 0.2 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="camera_bot">
+      <static>true</static>
+
+      <link name="link">
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <sensor name="camera" type="camera">
+            <always_on>true</always_on>
+            <update_rate>30</update_rate>
+
+            <topic>/camera</topic>
+
+            <camera>
+                <image>
+                <width>640</width>
+                <height>480</height>
+                <format>R8G8B8</format>
+                </image>
+            </camera>
+
+            <!-- 🔥 CRITICAL -->
+            <visualize>true</visualize>
+        </sensor>
+      </link>
+    </model>
+
+  </world>
+</sdf>

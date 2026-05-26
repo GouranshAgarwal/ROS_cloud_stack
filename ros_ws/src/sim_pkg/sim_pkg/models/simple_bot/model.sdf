@@ -1,0 +1,40 @@
+<sdf version="1.6">
+  <model name="simple_bot">
+
+    <!-- Base -->
+    <link name="base_link">
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Camera -->
+    <link name="camera_link">
+
+      <sensor name="camera" type="camera">
+        <camera>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+        </camera>
+
+        <!-- 🔥 This is the IMPORTANT PART -->
+        <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
+          <ros>
+            <namespace>/camera</namespace>
+          </ros>
+          <topicName>image_raw</topicName>
+        </plugin>
+
+      </sensor>
+
+    </link>
+
+  </model>
+</sdf>
